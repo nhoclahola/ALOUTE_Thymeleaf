@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: ALOUTE_Thymeleaf
+  datasource:
+    url: ${DBMS_CONNECTION:jdbc:mariadb://localhost:3306/aloute}
+    username: root
+    password: ${MYSQL_ROOT_PASSWORD:}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mvc:
+    servlet:
+      load-on-startup: 1

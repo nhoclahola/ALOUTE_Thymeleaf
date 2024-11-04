@@ -27,11 +27,13 @@ public class JwtValidator extends OncePerRequestFilter
             throws ServletException, IOException
     {
 //        String jwt = request.getHeader("Authorization");
-        String jwt = Arrays.stream(request.getCookies())
-                .filter(cookie -> "jwt".equals(cookie.getName()))
-                .findFirst()
-                .map(Cookie::getValue)
-                .orElse(null);
+        Cookie[] cookies = request.getCookies();
+        String jwt = (cookies != null) ?
+                Arrays.stream(cookies)
+                        .filter(cookie -> "jwt".equals(cookie.getName()))
+                        .findFirst()
+                        .map(Cookie::getValue)
+                        .orElse(null) : null;
         if (jwt != null)
         {
             try

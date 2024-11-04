@@ -5,14 +5,15 @@ $(document).ready(function () {
         const password = $('#password').val();
 
         $.ajax({
-            url: '/api/auth/login',
+            url: '/auth/login',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ email: email, password: password }),
             success: function (response) {
+                localStorage.setItem("jwt", response);
                 window.location.href = '/';
             },
-            error: function () {
+            error: function (error) {
                 alert('Your email or password does not match.');
             }
         });
@@ -30,7 +31,7 @@ $(document).ready(function () {
         };
 
         $.ajax({
-            url: '/api/auth/register',
+            url: '/auth/register',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),

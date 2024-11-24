@@ -22,6 +22,7 @@ public class SecurityConfig
     {
         httpSecurity.authorizeHttpRequests(request ->
                 request.requestMatchers("/api/**").authenticated()
+//                        .requestMatchers(("/")).authenticated()
                         .requestMatchers(("/home")).authenticated()
                         .anyRequest().permitAll());
 
